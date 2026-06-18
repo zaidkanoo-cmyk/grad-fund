@@ -1,0 +1,6 @@
+/* Grad Fund webfonts.
+   SUBSTITUTION NOTE: loaded from Google Fonts CDN rather than self-hosted binaries.
+   - Public Sans  → humanist UI/body sans with strong tabular figures (US Gov. design system origin; reads as trustworthy/institutional)
+   - IBM Plex Mono → tabular monospace for tickers, prices, and aligned numeric columns
+   If you want self-hosted .woff2 files instead, ask and I'll swap these for @font-face rules. */
+@import url('https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap');

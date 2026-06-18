@@ -1,0 +1,31 @@
+/* Grad Fund — elevation: radii, borders, shadows.
+   Banking-grade = restrained. Shadows are low, neutral, low-opacity (no heavy drop shadows). */
+:root {
+  /* Corner radii */
+  --radius-xs:  4px;
+  --radius-sm:  6px;
+  --radius-md:  10px;
+  --radius-lg:  14px;
+  --radius-xl:  20px;
+  --radius-2xl: 28px;
+  --radius-pill: 999px;
+
+  /* Border widths */
+  --border-width: 1px;
+  --border-width-strong: 1.5px;
+
+  /* Shadows — soft, cool-neutral, layered low */
+  --shadow-xs: 0 1px 1px rgba(24, 32, 30, 0.04);
+  --shadow-sm: 0 1px 2px rgba(24, 32, 30, 0.06), 0 1px 1px rgba(24, 32, 30, 0.04);
+  --shadow-md: 0 2px 4px rgba(24, 32, 30, 0.06), 0 4px 12px rgba(24, 32, 30, 0.06);
+  --shadow-lg: 0 6px 16px rgba(24, 32, 30, 0.08), 0 2px 6px rgba(24, 32, 30, 0.05);
+  --shadow-xl: 0 16px 40px rgba(24, 32, 30, 0.12), 0 4px 12px rgba(24, 32, 30, 0.06);
+
+  /* Focus ring (composable) */
+  --ring: 0 0 0 3px var(--focus-ring);
+
+  /* Card recipe (used widely) */
+  --card-radius: var(--radius-lg);
+  --card-border: var(--border-width) solid var(--border);
+  --card-shadow: var(--shadow-sm);
+}

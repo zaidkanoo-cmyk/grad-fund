@@ -1,0 +1,37 @@
+<!-- @dsCard group="Brand" viewport="700x210" name="Voice & verdict language" subtitle="Plain, calm, decision-first; halal & verdict wording" -->
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="utf-8"><link rel="stylesheet" href="../styles.css">
+<style>
+  body { margin: 0; background: var(--surface); padding: 22px 28px; color: var(--text); }
+  .cols { display:grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+  h4 { margin: 0 0 8px; font-family: var(--font-sans); font-size: 11px; letter-spacing:.06em; text-transform:uppercase; color: var(--text-subtle); }
+  .good, .bad { font-family: var(--font-sans); font-size: 14px; line-height: 1.5; display:flex; gap:8px; margin-bottom:6px; }
+  .good b { color: var(--gain); }
+  .bad b { color: var(--loss); }
+  .pill { display:inline-flex; align-items:center; gap:6px; padding:3px 10px; border-radius:var(--radius-pill); font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:.02em; }
+</style></head>
+<body>
+  <div class="cols">
+    <div>
+      <h4>How Grad Fund talks</h4>
+      <div class="good"><b>✓</b><span>“Up 2.4% today. Halal-compliant. We’d <em>invest</em>.”</span></div>
+      <div class="good"><b>✓</b><span>Plain, decision-first. Short sentences. We / you.</span></div>
+      <div class="bad"><b>✕</b><span>“Leverage synergistic alpha exposure.” — no jargon.</span></div>
+      <div class="bad"><b>✕</b><span>No hype, no emoji, no exclamation stacks.</span></div>
+    </div>
+    <div>
+      <h4>Verdict & halal wording</h4>
+      <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px">
+        <span class="pill" style="background:var(--positive-50);color:var(--verdict-buy)">● Invest</span>
+        <span class="pill" style="background:var(--amber-50);color:var(--verdict-watch)">● Watch</span>
+        <span class="pill" style="background:var(--negative-50);color:var(--verdict-avoid)">● Avoid</span>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;gap:8px">
+        <span class="pill" style="background:var(--positive-50);color:var(--halal-ok)">✓ Halal</span>
+        <span class="pill" style="background:var(--amber-50);color:var(--halal-review)">! Review</span>
+        <span class="pill" style="background:var(--negative-50);color:var(--halal-no)">✕ Not halal</span>
+      </div>
+    </div>
+  </div>
+</body></html>

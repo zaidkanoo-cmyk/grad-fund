@@ -1,0 +1,31 @@
+/* Grad Fund — motion tokens.
+   Calm and quick. Fades + small lifts; never bouncy. Respect reduced-motion. */
+:root {
+  --dur-instant: 80ms;  /* @kind other */
+  --dur-fast:    140ms; /* @kind other */
+  --dur-base:    220ms; /* @kind other */
+  --dur-slow:    360ms; /* @kind other */
+
+  --ease-out:    cubic-bezier(0.22, 0.61, 0.36, 1); /* @kind other */
+  --ease-in-out: cubic-bezier(0.45, 0, 0.2, 1); /* @kind other */
+  --ease-standard: cubic-bezier(0.2, 0, 0, 1); /* @kind other */
+
+  --transition-base: all var(--dur-fast) var(--ease-out);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --dur-instant: 0ms; /* @kind other */
+    --dur-fast: 0ms; /* @kind other */
+    --dur-base: 0ms; /* @kind other */
+    --dur-slow: 0ms; /* @kind other */
+  }
+}
+
+@keyframes gf-spin { to { transform: rotate(360deg); } }
+
+/* Shared hover affordances for token-styled primitives */
+.gf-btn:not(:disabled):hover { filter: brightness(0.96); }
+.gf-btn:not(:disabled):active { transform: translateY(0.5px); }
+.gf-iconbtn:not(:disabled):hover { background: var(--surface-sunken) !important; color: var(--text) !important; }
+.gf-card { will-change: box-shadow; }

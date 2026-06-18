@@ -1,0 +1,28 @@
+<!-- @dsCard group="Colors" viewport="700x180" name="Market · Gain / Loss" subtitle="Muted green up, muted red down — the most-used data colors" -->
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="utf-8"><link rel="stylesheet" href="../styles.css">
+<style>
+  body { margin: 0; background: var(--surface); padding: 24px 28px; display:flex; gap: 18px; }
+  .blk { flex: 1; border-radius: var(--radius-md); padding: 16px; border: 1px solid var(--border); }
+  .lab { font-family: var(--font-sans); font-size: 12px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; }
+  .val { font-family: var(--font-mono); font-variant-numeric: tabular-nums; font-size: 26px; font-weight: 600; margin-top: 8px; }
+  .tok { font-family: var(--font-mono); font-size: 11px; color: var(--text-subtle); margin-top: 10px; }
+</style></head>
+<body>
+  <div class="blk" style="background:var(--gain-soft)">
+    <div class="lab" style="color:var(--gain)">▲ Gain</div>
+    <div class="val" style="color:var(--gain)">+2.41%</div>
+    <div class="tok">--gain · #15875A &nbsp;|&nbsp; --gain-soft</div>
+  </div>
+  <div class="blk" style="background:var(--loss-soft)">
+    <div class="lab" style="color:var(--loss)">▼ Loss</div>
+    <div class="val" style="color:var(--loss)">−1.86%</div>
+    <div class="tok">--loss · #CC3B33 &nbsp;|&nbsp; --loss-soft</div>
+  </div>
+  <div class="blk">
+    <div class="lab" style="color:var(--text-subtle)">• Flat</div>
+    <div class="val" style="color:var(--text-subtle)">0.00%</div>
+    <div class="tok">--text-subtle</div>
+  </div>
+</body></html>

@@ -1,0 +1,63 @@
+<!-- @dsCard group="Web dashboard" viewport="1320x840" name="Portfolio dashboard" subtitle="Interactive desktop app — overview, watchlist, detail, compare" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Grad Fund — Dashboard</title>
+  <link rel="stylesheet" href="../../styles.css">
+  <link rel="icon" href="../../assets/gradfund-mark.svg">
+  <style>
+    html, body { margin: 0; height: 100%; background: var(--bg-app); }
+    * { box-sizing: border-box; }
+    .gf-tr { transition: background var(--dur-fast) var(--ease-out); }
+    .gf-tr:hover { background: var(--surface-hover); }
+    tbody tr td:first-child { border-top-left-radius: var(--radius-sm); border-bottom-left-radius: var(--radius-sm); }
+    ::selection { background: var(--evergreen-100); }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+  <script src="../../_ds_bundle.js"></script>
+  <script src="data.js"></script>
+  <script type="text/babel" src="Icons.jsx"></script>
+  <script type="text/babel" src="AppShell.jsx"></script>
+  <script type="text/babel" src="OverviewScreen.jsx"></script>
+  <script type="text/babel" src="WatchlistScreen.jsx"></script>
+  <script type="text/babel" src="StockDetailScreen.jsx"></script>
+  <script type="text/babel" src="CompareScreen.jsx"></script>
+  <script type="text/babel" src="AddPositionDrawer.jsx"></script>
+  <script type="text/babel" data-presets="react">
+    function App() {
+      const [nav, setNav] = React.useState("overview");
+      const [detail, setDetail] = React.useState(null);
+      const [halalOnly, setHalalOnly] = React.useState(false);
+      const [drawer, setDrawer] = React.useState(false);
+
+      const openDetail = (sec) => { setDetail(sec); };
+      const back = () => setDetail(null);
+      const go = (id) => { setDetail(null); setNav(id); };
+
+      let body;
+      if (detail) body = <window.StockDetailScreen security={detail} onBack={back} />;
+      else if (nav === "overview") body = <window.OverviewScreen onOpen={openDetail} holdings={halalOnly ? window.GFData.holdings.filter(h=>h.halal!=="non-compliant") : null} />;
+      else if (nav === "watchlist") body = <window.WatchlistScreen onOpen={openDetail} mode="watchlist" halalOnly={halalOnly} />;
+      else if (nav === "screener") body = <window.WatchlistScreen onOpen={openDetail} mode="screener" halalOnly={halalOnly} />;
+      else if (nav === "compare") body = <window.CompareScreen onOpen={openDetail} />;
+
+      return (
+        <React.Fragment>
+          <window.AppShell active={nav} onNav={go} halalOnly={halalOnly} setHalalOnly={setHalalOnly} onAdd={() => setDrawer(true)} onSearch={() => {}}>
+            {body}
+          </window.AppShell>
+          <window.AddPositionDrawer open={drawer} onClose={() => setDrawer(false)} />
+        </React.Fragment>
+      );
+    }
+    ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+  </script>
+</body>
+</html>

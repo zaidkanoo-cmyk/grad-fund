@@ -1,0 +1,5 @@
+<svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Grad Fund mark">
+  <rect x="2" y="2" width="44" height="44" rx="12" fill="#0F7257"></rect>
+  <path d="M12 34 L20 25 L27 31 L36 18" stroke="#fff" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"></path>
+  <circle cx="36" cy="18" r="2.9" fill="#fff"></circle>
+</svg>

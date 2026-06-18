@@ -1,0 +1,62 @@
+<!-- @dsCard group="Mobile app" viewport="900x920" name="Mobile app" subtitle="Phone portfolio + security detail" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Grad Fund — Mobile</title>
+  <link rel="stylesheet" href="../../styles.css">
+  <link rel="icon" href="../../assets/gradfund-mark.svg">
+  <style>
+    html, body { margin: 0; background: var(--gray-100); }
+    * { box-sizing: border-box; }
+    .canvas { min-height: 100vh; display: flex; gap: 48px; align-items: flex-start; justify-content: center; padding: 48px; flex-wrap: wrap; }
+    .phone { width: 410px; }
+    .label { font-family: var(--font-sans); font-size: 13px; font-weight: 600; color: var(--text-muted); margin-bottom: 14px; text-align: center; }
+    .bezel { width: 410px; height: 868px; background: #0c1110; border-radius: 52px; padding: 12px; box-shadow: var(--shadow-xl); }
+    .screen { width: 100%; height: 100%; background: var(--bg-app); border-radius: 41px; overflow: hidden; position: relative; }
+    .statusbar { height: 44px; display: flex; align-items: center; justify-content: space-between; padding: 0 26px; font-family: var(--font-sans); font-size: 14px; font-weight: 700; color: var(--text-strong); }
+    .notch { position: absolute; top: 11px; left: 50%; transform: translateX(-50%); width: 120px; height: 30px; background: #0c1110; border-radius: 0 0 18px 18px; z-index: 5; }
+    .screen-body { height: calc(100% - 44px); }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+  <script src="../../_ds_bundle.js"></script>
+  <script src="../web-dashboard/data.js"></script>
+  <script type="text/babel" src="../web-dashboard/Icons.jsx"></script>
+  <script type="text/babel" src="MobilePortfolio.jsx"></script>
+  <script type="text/babel" src="MobileDetail.jsx"></script>
+  <script type="text/babel" data-presets="react">
+    function StatusBar() {
+      return <div className="statusbar"><span>9:41</span><span style={{display:"flex",gap:6,fontSize:13}}>5G ▪ 100%</span></div>;
+    }
+    function Phone({ label, children }) {
+      return (
+        <div className="phone">
+          <div className="label">{label}</div>
+          <div className="bezel"><div className="screen"><div className="notch"></div><StatusBar /><div className="screen-body">{children}</div></div></div>
+        </div>
+      );
+    }
+    function InteractivePhone() {
+      const [sec, setSec] = React.useState(null);
+      return sec
+        ? <window.MobileDetail security={sec} onBack={() => setSec(null)} />
+        : <window.MobilePortfolio onOpen={setSec} />;
+    }
+    function App() {
+      return (
+        <div className="canvas">
+          <Phone label="Portfolio — tap a holding"><InteractivePhone /></Phone>
+          <Phone label="Security detail"><window.MobileDetail security={window.GFData.detail} onBack={() => {}} /></Phone>
+        </div>
+      );
+    }
+    ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+  </script>
+</body>
+</html>

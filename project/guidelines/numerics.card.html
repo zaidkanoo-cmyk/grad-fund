@@ -1,0 +1,20 @@
+<!-- @dsCard group="Type" viewport="700x190" name="Numerics & mono" subtitle="IBM Plex Mono, tabular figures for aligned data" -->
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="utf-8"><link rel="stylesheet" href="../styles.css">
+<style>
+  body { margin: 0; background: var(--surface); color: var(--text-strong); padding: 22px 28px; }
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 40px; }
+  .lbl { font-family: var(--font-mono); font-size: 11px; color: var(--text-subtle); margin-bottom: 4px; }
+  .num { font-family: var(--font-mono); font-variant-numeric: tabular-nums; font-size: 20px; font-weight: 600; color: var(--text-strong); }
+  .col { display:flex; flex-direction:column; gap:2px; font-family: var(--font-mono); font-variant-numeric: tabular-nums; font-size: 17px; }
+  .col span { display:flex; justify-content:space-between; }
+</style></head>
+<body>
+  <div class="grid">
+    <div><div class="lbl">PRICES · tabular</div><div class="num">$1,284.50 · $98.20 · $7.04</div></div>
+    <div><div class="lbl">RIGHT-ALIGNED COLUMN</div>
+      <div class="col"><span><em style="font-style:normal;color:var(--text-muted)">AAPL</em>$201.34</span><span><em style="font-style:normal;color:var(--text-muted)">VWRA</em>$1,284.50</span><span><em style="font-style:normal;color:var(--text-muted)">TSLA</em>$98.20</span></div>
+    </div>
+  </div>
+</body></html>

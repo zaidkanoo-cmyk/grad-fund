@@ -1,0 +1,64 @@
+<!-- @dsCard group="Components" viewport="700x340" name="Core · Buttons, Badges, Card" subtitle="Button, IconButton, Badge, Card" -->
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="utf-8"><link rel="stylesheet" href="../../styles.css">
+<style> body{margin:0;background:var(--bg-app);padding:24px;font-family:var(--font-sans)} 
+  .root{display:flex;flex-direction:column;gap:18px}
+  .group{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+  .h{font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--text-subtle);font-weight:700;margin-bottom:8px}
+</style></head>
+<body>
+  <div id="root"></div>
+  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+  <script src="../../_ds_bundle.js"></script>
+  <script type="text/babel">
+    const { Button, IconButton, Badge, Card, CardHeader } = window.GradFundDesignSystem_42702f;
+    const Star = () => <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>;
+    const Plus = () => <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>;
+    const More = () => <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><circle cx="5" cy="12" r="1.6"/><circle cx="12" cy="12" r="1.6"/><circle cx="19" cy="12" r="1.6"/></svg>;
+    function Demo(){
+      return (
+        <div className="root">
+          <div>
+            <div className="h">Buttons</div>
+            <div className="group">
+              <Button variant="primary" leadingIcon={<Plus/>}>Add position</Button>
+              <Button variant="secondary">New watchlist</Button>
+              <Button variant="brandSoft">Compare</Button>
+              <Button variant="ghost">Cancel</Button>
+              <Button variant="danger">Close out</Button>
+              <Button variant="primary" loading>Saving</Button>
+              <Button variant="secondary" disabled>Disabled</Button>
+            </div>
+          </div>
+          <div className="group">
+            <Button size="sm" variant="secondary">Small</Button>
+            <Button size="md" variant="secondary">Medium</Button>
+            <Button size="lg" variant="secondary">Large</Button>
+            <IconButton label="Watch" variant="outline"><Star/></IconButton>
+            <IconButton label="Add" variant="solid"><Plus/></IconButton>
+            <IconButton label="More" variant="ghost"><More/></IconButton>
+          </div>
+          <div>
+            <div className="h">Badges</div>
+            <div className="group">
+              <Badge tone="positive" dot>Open</Badge>
+              <Badge tone="brand">Core holding</Badge>
+              <Badge tone="amber">Review</Badge>
+              <Badge tone="negative" variant="solid">High risk</Badge>
+              <Badge tone="info" variant="outline">USD</Badge>
+              <Badge tone="neutral">Watchlist</Badge>
+            </div>
+          </div>
+          <Card style={{maxWidth:340}}>
+            <CardHeader title="Holdings" subtitle="12 positions" action={<Button size="sm" variant="ghost">View all</Button>} />
+            <div style={{fontSize:14,color:'var(--text-muted)'}}>The base surface — hairline border, soft shadow.</div>
+          </Card>
+        </div>
+      );
+    }
+    ReactDOM.createRoot(document.getElementById('root')).render(<Demo/>);
+  </script>
+</body></html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<!-- @template name="Portfolio Dashboard" description="Grad Fund portfolio overview — summary metrics, allocation, and a holdings list built from the finance primitives." -->
+<helmet>
+<script src="./ds-base.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+</helmet>
+<div style="min-height:100vh;background:#F7F8F7;font-family:'Public Sans',system-ui,sans-serif;padding:32px 36px;color:#29312F">
+  <div style="max-width:1100px;margin:0 auto;display:flex;flex-direction:column;gap:22px">
+
+    <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:16px">
+      <div>
+        <div style="font-size:33px;font-weight:800;letter-spacing:-0.025em;color:#18201E">Portfolio</div>
+        <div style="color:#5B6463;margin-top:4px;font-size:15px">8 positions · last synced 2 min ago</div>
+      </div>
+      <x-import component-from-global-scope="GradFundDesignSystem_42702f.Badge" tone="positive" dot="{{ true }}" hint-size="120px,24px">Markets open</x-import>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px">
+      <div style="background:#fff;border:1px solid #E1E6E4;border-radius:14px;padding:20px;box-shadow:0 1px 2px rgba(24,32,30,0.06)">
+        <x-import component-from-global-scope="GradFundDesignSystem_42702f.MetricTile" label="Total value" value="$128,450" emphasis="{{ true }}" hint-size="100%,60px"></x-import>
+      </div>
+      <div style="background:#fff;border:1px solid #E1E6E4;border-radius:14px;padding:20px;box-shadow:0 1px 2px rgba(24,32,30,0.06)">
+        <x-import component-from-global-scope="GradFundDesignSystem_42702f.MetricTile" label="Today" value="+1.12%" hint-size="100%,60px"></x-import>
+      </div>
+      <div style="background:#fff;border:1px solid #E1E6E4;border-radius:14px;padding:20px;box-shadow:0 1px 2px rgba(24,32,30,0.06)">
+        <x-import component-from-global-scope="GradFundDesignSystem_42702f.MetricTile" label="All-time return" value="+24.6%" hint-size="100%,60px"></x-import>
+      </div>
+      <div style="background:#fff;border:1px solid #E1E6E4;border-radius:14px;padding:20px;box-shadow:0 1px 2px rgba(24,32,30,0.06)">
+        <x-import component-from-global-scope="GradFundDesignSystem_42702f.MetricTile" label="Halal mix" value="71%" hint-size="100%,60px"></x-import>
+      </div>
+    </div>
+
+    <div style="background:#fff;border:1px solid #E1E6E4;border-radius:14px;padding:24px;box-shadow:0 1px 2px rgba(24,32,30,0.06)">
+      <div style="font-size:16px;font-weight:600;color:#18201E;margin-bottom:16px">Allocation by asset class</div>
+      <x-import component-from-global-scope="GradFundDesignSystem_42702f.AllocationBar" segments="{{ segments }}" height="{{ 14 }}" hint-size="100%,80px"></x-import>
+    </div>
+
+    <div style="background:#fff;border:1px solid #E1E6E4;border-radius:14px;padding:24px;box-shadow:0 1px 2px rgba(24,32,30,0.06)">
+      <div style="font-size:16px;font-weight:600;color:#18201E;margin-bottom:6px">Holdings</div>
+      <sc-for list="{{ holdings }}" as="h" hint-placeholder-count="5">
+        <div style="display:flex;align-items:center;gap:14px;padding:13px 0;border-bottom:1px solid #EEF1F0">
+          <x-import component-from-global-scope="GradFundDesignSystem_42702f.CompanyMark" ticker="{{ h.ticker }}" name="{{ h.name }}" hint-size="40px,40px"></x-import>
+          <div style="flex:1;min-width:0">
+            <div style="font-weight:600;color:#18201E;font-size:14px">{{ h.ticker }}</div>
+            <div style="font-size:12.5px;color:#5B6463">{{ h.name }}</div>
+          </div>
+          <x-import component-from-global-scope="GradFundDesignSystem_42702f.HalalBadge" status="{{ h.halal }}" size="sm" hint-size="80px,22px"></x-import>
+          <div style="width:96px;text-align:right;font-family:'IBM Plex Mono',monospace;font-variant-numeric:tabular-nums;font-size:14px;font-weight:500;color:#18201E">{{ h.price }}</div>
+          <div style="width:84px;display:flex;justify-content:flex-end">
+            <x-import component-from-global-scope="GradFundDesignSystem_42702f.ChangeValue" value="{{ h.day }}" size="sm" hint-size="72px,20px"></x-import>
+          </div>
+          <x-import component-from-global-scope="GradFundDesignSystem_42702f.VerdictPill" verdict="{{ h.verdict }}" size="sm" hint-size="84px,22px"></x-import>
+        </div>
+      </sc-for>
+    </div>
+
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  renderVals() {
+    return {
+      segments: [
+        { label: "Stocks", value: 50.3, color: "#2563B0" },
+        { label: "ETFs", value: 27.6, color: "#0F7257" },
+        { label: "Bonds", value: 9.4, color: "#6B5BD0" },
+        { label: "Futures", value: 7.2, color: "#C6841C" },
+        { label: "Crypto", value: 3.5, color: "#C97A12" },
+        { label: "Cash", value: 2.0, color: "#7E8887" },
+      ],
+      holdings: [
+        { ticker: "AAPL", name: "Apple Inc.", price: "$201.34", day: 1.62, halal: "compliant", verdict: "buy" },
+        { ticker: "VWRA", name: "Vanguard FTSE All-World", price: "$128.45", day: 0.41, halal: "review", verdict: "buy" },
+        { ticker: "MSFT", name: "Microsoft Corp.", price: "$432.18", day: -0.84, halal: "compliant", verdict: "buy" },
+        { ticker: "SUKK", name: "iShares Sukuk Bond", price: "$102.30", day: 0.08, halal: "compliant", verdict: "buy" },
+        { ticker: "TSLA", name: "Tesla Inc.", price: "$245.60", day: -2.18, halal: "review", verdict: "watch" },
+      ],
+    };
+  }
+}
+</script>
+</body>
+</html>

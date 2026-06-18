@@ -1,0 +1,29 @@
+<!-- @dsCard group="Spacing" viewport="700x170" name="Radii & elevation" subtitle="Corner radii + the restrained shadow set" -->
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="utf-8"><link rel="stylesheet" href="../styles.css">
+<style>
+  body { margin: 0; background: var(--gray-50); padding: 24px 28px; }
+  .sec { font-family: var(--font-mono); font-size: 11px; color: var(--text-subtle); margin-bottom: 12px; }
+  .row { display:flex; gap: 18px; align-items: flex-end; }
+  .tile { background: var(--surface); border: 1px solid var(--border); width: 78px; height: 56px; display:flex; align-items:flex-end; justify-content:center; padding-bottom:6px; font-family: var(--font-mono); font-size: 10px; color: var(--text-subtle); }
+  .row + .sec { margin-top: 18px; }
+</style></head>
+<body>
+  <div class="sec">RADII</div>
+  <div class="row">
+    <div class="tile" style="border-radius:var(--radius-sm)">sm·6</div>
+    <div class="tile" style="border-radius:var(--radius-md)">md·10</div>
+    <div class="tile" style="border-radius:var(--radius-lg)">lg·14</div>
+    <div class="tile" style="border-radius:var(--radius-xl)">xl·20</div>
+    <div class="tile" style="border-radius:var(--radius-pill)">pill</div>
+  </div>
+  <div class="sec">ELEVATION</div>
+  <div class="row">
+    <div class="tile" style="border-radius:var(--radius-md);box-shadow:var(--shadow-xs);border-color:transparent">xs</div>
+    <div class="tile" style="border-radius:var(--radius-md);box-shadow:var(--shadow-sm);border-color:transparent">sm</div>
+    <div class="tile" style="border-radius:var(--radius-md);box-shadow:var(--shadow-md);border-color:transparent">md</div>
+    <div class="tile" style="border-radius:var(--radius-md);box-shadow:var(--shadow-lg);border-color:transparent">lg</div>
+    <div class="tile" style="border-radius:var(--radius-md);box-shadow:var(--shadow-xl);border-color:transparent">xl</div>
+  </div>
+</body></html>
