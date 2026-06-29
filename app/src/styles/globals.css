@@ -1,0 +1,205 @@
+@import url('https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
+
+:root {
+  /* --- Brand: Evergreen --- */
+  --evergreen-50:  #ECF6F1;
+  --evergreen-100: #D2EBDF;
+  --evergreen-200: #A8D8C2;
+  --evergreen-300: #74BFA1;
+  --evergreen-400: #45A07E;
+  --evergreen-500: #1F8463;
+  --evergreen-600: #0F7257;
+  --evergreen-700: #0B5C47;
+  --evergreen-800: #0A4838;
+  --evergreen-900: #073329;
+
+  /* --- Neutral: warm slate --- */
+  --gray-0:   #FFFFFF;
+  --gray-50:  #F7F8F7;
+  --gray-100: #EEF1F0;
+  --gray-200: #E1E6E4;
+  --gray-300: #CDD4D2;
+  --gray-400: #A7B0AE;
+  --gray-500: #7E8887;
+  --gray-600: #5B6463;
+  --gray-700: #404A48;
+  --gray-800: #29312F;
+  --gray-900: #18201E;
+
+  /* --- Market --- */
+  --positive-50:  #E8F5EE;
+  --positive-500: #15875A;
+  --positive-700: #0E6443;
+  --negative-50:  #FBEBE9;
+  --negative-500: #CC3B33;
+  --negative-700: #9E2A24;
+
+  /* --- Status --- */
+  --amber-50:  #FBF1DE;
+  --amber-500: #C6841C;
+  --amber-700: #8F5E12;
+  --blue-50:   #E8F0FA;
+  --blue-500:  #2563B0;
+  --blue-700:  #1B4A85;
+  --violet-500:#6B5BD0;
+
+  /* --- Asset class accents --- */
+  --asset-stock:   #2563B0;
+  --asset-etf:     #0F7257;
+  --asset-bond:    #6B5BD0;
+  --asset-future:  #C6841C;
+  --asset-option:  #B0457E;
+  --asset-crypto:  #C97A12;
+  --asset-cash:    #7E8887;
+
+  /* === Semantic aliases === */
+  --brand:            var(--evergreen-600);
+  --brand-strong:     var(--evergreen-700);
+  --brand-soft:       var(--evergreen-50);
+  --brand-on:         #FFFFFF;
+
+  --bg-app:           var(--gray-50);
+  --surface:          var(--gray-0);
+  --surface-sunken:   var(--gray-100);
+  --surface-hover:    var(--gray-50);
+  --surface-inverse:  var(--gray-900);
+
+  --text-strong:      var(--gray-900);
+  --text:             var(--gray-800);
+  --text-muted:       var(--gray-600);
+  --text-subtle:      var(--gray-500);
+  --text-on-brand:    #FFFFFF;
+  --text-on-inverse:  var(--gray-50);
+  --text-link:        var(--evergreen-700);
+
+  --border:           var(--gray-200);
+  --border-strong:    var(--gray-300);
+  --divider:          var(--gray-100);
+  --focus-ring:       color-mix(in oklab, var(--evergreen-500) 45%, transparent);
+
+  --gain:             var(--positive-500);
+  --gain-soft:        var(--positive-50);
+  --loss:             var(--negative-500);
+  --loss-soft:        var(--negative-50);
+
+  --verdict-buy:      var(--positive-500);
+  --verdict-watch:    var(--amber-500);
+  --verdict-avoid:    var(--negative-500);
+  --halal-ok:         var(--positive-500);
+  --halal-review:     var(--amber-500);
+  --halal-no:         var(--negative-500);
+
+  /* --- Typography --- */
+  --font-sans: "Public Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
+
+  --text-2xs:  11px;
+  --text-xs:   12px;
+  --text-sm:   13px;
+  --text-base: 15px;
+  --text-md:   16px;
+  --text-lg:   18px;
+  --text-xl:   22px;
+  --text-2xl:  27px;
+  --text-3xl:  33px;
+  --text-4xl:  42px;
+
+  --weight-regular:  400;
+  --weight-medium:   500;
+  --weight-semibold: 600;
+  --weight-bold:     700;
+  --weight-black:    800;
+
+  --leading-tight:   1.12;
+  --leading-snug:    1.28;
+  --leading-normal:  1.5;
+  --leading-relaxed: 1.65;
+
+  --tracking-tight:  -0.02em;
+  --tracking-snug:   -0.01em;
+  --tracking-normal: 0;
+  --tracking-wide:   0.04em;
+  --tracking-caps:   0.08em;
+
+  /* --- Spacing --- */
+  --space-0:  0;
+  --space-1:  4px;
+  --space-2:  8px;
+  --space-3:  12px;
+  --space-4:  16px;
+  --space-5:  20px;
+  --space-6:  24px;
+  --space-8:  32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --gutter:   var(--space-6);
+  --page-pad: var(--space-8);
+  --card-pad: var(--space-5);
+  --max-content: 1240px;
+
+  /* --- Elevation --- */
+  --radius-xs:  4px;
+  --radius-sm:  6px;
+  --radius-md:  10px;
+  --radius-lg:  14px;
+  --radius-xl:  20px;
+  --radius-2xl: 28px;
+  --radius-pill: 999px;
+
+  --shadow-xs: 0 1px 1px rgba(24, 32, 30, 0.04);
+  --shadow-sm: 0 1px 2px rgba(24, 32, 30, 0.06), 0 1px 1px rgba(24, 32, 30, 0.04);
+  --shadow-md: 0 2px 4px rgba(24, 32, 30, 0.06), 0 4px 12px rgba(24, 32, 30, 0.06);
+  --shadow-lg: 0 6px 16px rgba(24, 32, 30, 0.08), 0 2px 6px rgba(24, 32, 30, 0.05);
+  --shadow-xl: 0 16px 40px rgba(24, 32, 30, 0.12), 0 4px 12px rgba(24, 32, 30, 0.06);
+  --ring: 0 0 0 3px var(--focus-ring);
+
+  --card-radius: var(--radius-lg);
+  --card-border: 1px solid var(--border);
+  --card-shadow: var(--shadow-sm);
+
+  /* --- Motion --- */
+  --dur-instant: 80ms;
+  --dur-fast:    140ms;
+  --dur-base:    220ms;
+  --dur-slow:    360ms;
+  --ease-out:    cubic-bezier(0.22, 0.61, 0.36, 1);
+  --ease-in-out: cubic-bezier(0.45, 0, 0.2, 1);
+  --transition-base: all var(--dur-fast) var(--ease-out);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --dur-instant: 0ms;
+    --dur-fast: 0ms;
+    --dur-base: 0ms;
+    --dur-slow: 0ms;
+  }
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html, body, #root {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: var(--font-sans);
+  color: var(--text);
+  background: var(--bg-app);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  font-feature-settings: "tnum" 1, "lnum" 1;
+}
+
+::selection { background: var(--evergreen-100); }
+
+@keyframes gf-spin { to { transform: rotate(360deg); } }
+
+.gf-btn:not(:disabled):hover { filter: brightness(0.96); }
+.gf-btn:not(:disabled):active { transform: translateY(0.5px); }
+.gf-iconbtn:not(:disabled):hover { background: var(--surface-sunken) !important; color: var(--text) !important; }
+.gf-tr { transition: background var(--dur-fast) var(--ease-out); }
+.gf-tr:hover { background: var(--surface-hover); }
+.gf-num { font-variant-numeric: tabular-nums lining-nums; font-feature-settings: "tnum" 1, "lnum" 1; }
+.gf-mono { font-family: var(--font-mono); font-feature-settings: "tnum" 1; letter-spacing: -0.01em; }
+
+tbody tr td:first-child { border-top-left-radius: var(--radius-sm); border-bottom-left-radius: var(--radius-sm); }
