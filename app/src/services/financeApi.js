@@ -20,13 +20,27 @@ export async function fetchPortfolio() {
     if (data.ibkrConnected) return { ...data, detail: data.detail ?? mockData.detail };
   } catch {}
 
-  // 2. Try Yahoo Finance (real prices, no auth needed)
+  // 2. Try Yahoo Finance directly from browser (free, no auth)
   try {
-    const res = await fetch('/api/yahoo-portfolio');
-    if (res.ok) {
-      const data = await res.json();
-      if (data.yahooConnected) return { ...data, detail: mockData.detail };
-    }
+    const holdings = await Promise.all(
+      mockData.holdings.map(async h => {
+        try {
+          const q = await yahooFetch(h.ticker);
+          const price = q.price || h.price;
+          const value = +(price * h.shares).toFixed(2);
+          const costValue = +(h.cost * h.shares).toFixed(2);
+          return { ...h, price, day: q.day, spark: q.spark, value, costValue, totalRet: +((value - costValue) / costValue * 100).toFixed(2), totalGain: +(value - costValue).toFixed(2) };
+        } catch { return h; }
+      })
+    );
+    const totalValue = +holdings.reduce((s, h) => s + h.value, 0).toFixed(2);
+    const totalCost = +holdings.reduce((s, h) => s + h.costValue, 0).toFixed(2);
+    const totalGain = +(totalValue - totalCost).toFixed(2);
+    const totalRet = +((totalGain / totalCost) * 100).toFixed(2);
+    const dayChange = +holdings.reduce((s, h) => s + h.value * (h.day / 100), 0).toFixed(2);
+    const dayPct = +((dayChange / (totalValue - dayChange)) * 100).toFixed(2);
+    holdings.forEach(h => { h.weight = +(h.value / totalValue * 100).toFixed(1); });
+    return { ...mockData, holdings, summary: { totalValue, totalCost, totalGain, totalRet, dayChange, dayPct, invested: totalCost, positions: holdings.length } };
   } catch {}
 
   // 3. Alpha Vantage
@@ -38,17 +52,28 @@ export async function fetchPortfolio() {
   return mockData;
 }
 
+async function yahooFetch(ticker) {
+  const url = `https://query1.finance.yahoo.com/v8/finance/chart/${ticker}?interval=1d&range=3mo`;
+  const res = await fetch(url);
+  if (!res.ok) throw new Error(`Yahoo ${res.status}`);
+  const json = await res.json();
+  const result = json.chart?.result?.[0];
+  if (!result) throw new Error('No data');
+  const meta = result.meta;
+  const closes = (result.indicators?.quote?.[0]?.close || []).filter(Boolean);
+  const price = meta.regularMarketPrice || 0;
+  const prev = meta.previousClose || price;
+  return { price, day: prev ? +((price - prev) / prev * 100).toFixed(2) : 0, spark: closes.slice(-30) };
+}
+
 // ── Single quote ───────────────────────────────────────
 
 export async function fetchQuote(ticker) {
-  // Try Yahoo via backend
+  // Try Yahoo directly from browser
   try {
-    const res = await fetch(`/api/yahoo/${ticker}`);
-    if (res.ok) {
-      const q = await res.json();
-      const found = [...mockData.holdings, ...mockData.watchlist].find(s => s.ticker === ticker);
-      return { ...(found || mockData.detail), ...q, ticker };
-    }
+    const q = await yahooFetch(ticker);
+    const found = [...mockData.holdings, ...mockData.watchlist].find(s => s.ticker === ticker);
+    return { ...(found || mockData.detail), ...q, ticker };
   } catch {}
 
   // AV fallback

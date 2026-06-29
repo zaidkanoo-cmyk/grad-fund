@@ -1,0 +1,13 @@
+{
+  "name": "Grad Fund",
+  "short_name": "Grad Fund",
+  "description": "Halal portfolio tracker for you and Dad",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0d1612",
+  "theme_color": "#0F7257",
+  "orientation": "portrait-primary",
+  "icons": [
+    { "src": "/gradfund-mark.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }
+  ]
+}
